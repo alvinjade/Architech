@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architect Studio | House Designer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+    <div class="brand">
+        <div class="brand-icon">⌂</div>
+        <div>
+            <h1>ARCHITECT <span>STUDIO</span></h1>
+            <small>ULTIMATE HOUSE DESIGNER</small>
+        </div>
+    </div>
+
+    <div class="project-info">
+        <span class="online-dot"></span>
+        <span id="saveStatus">All changes ready</span>
+        <input id="projectName" value="My Dream House" aria-label="Project name">
+    </div>
+
+    <div class="top-actions">
+        <button id="undoBtn">↶</button>
+        <button id="redoBtn">↷</button>
+        <button id="saveBtn" class="save-btn">Save Project</button>
+        <button id="exportBtn" class="export-btn">Export PNG ↓</button>
+    </div>
+</header>
+
+<div class="app">
+
+    <aside class="left-panel">
+        <div class="panel-heading">
+            <span>BUILD MENU</span>
+            <span class="tiny-tag">DESIGN</span>
+        </div>
+
+        <div class="tool-grid">
+            <button class="main-tool active" data-mode="select">
+                <span>↖</span> Select
+            </button>
+            <button class="main-tool" data-mode="wall">
+                <span>▰</span> Walls
+            </button>
+            <button class="main-tool" data-mode="erase">
+                <span>⌫</span> Eraser
+            </button>
+        </div>
+
+        <div class="panel-divider"></div>
+
+        <div class="section-heading">
+            <span>ROOM CATALOG</span>
+            <span class="count">12 ITEMS</span>
+        </div>
+
+        <div class="catalog" id="roomCatalog"></div>
+
+        <div class="panel-divider"></div>
+
+        <div class="section-heading">
+            <span>FURNITURE & OBJECTS</span>
+        </div>
+
+        <div class="category-tabs" id="categoryTabs">
+            <button class="category active" data-category="Living">Living</button>
+            <button class="category" data-category="Bedroom">Bedroom</button>
+            <button class="category" data-category="Kitchen">Kitchen</button>
+            <button class="category" data-category="Bathroom">Bathroom</button>
+            <button class="category" data-category="Other">Other</button>
+        </div>
+
+        <div class="catalog furniture-catalog" id="itemCatalog"></div>
+
+        <div class="hint">
+            <strong>PRO TIP</strong>
+            <p>Select an item, then click the blueprint to place it. Select an object to move or rotate it.</p>
+        </div>
+    </aside>
+
+    <main class="main-area">
+        <div class="canvas-toolbar">
+            <div>
+                <strong>MY BLUEPRINT</strong>
+                <small> / FLOOR PLAN EDITOR</small>
+            </div>
+
+            <div class="view-controls">
+                <button id="zoomOut">−</button>
+                <span id="zoomValue">100%</span>
+                <button id="zoomIn">+</button>
+                <button id="resetView">Reset View</button>
+            </div>
+        </div>
+
+        <div class="canvas-wrap" id="canvasWrap">
+            <canvas id="blueprint" width="1200" height="760"></canvas>
+
+            <div class="canvas-hint">
+                <span>SCROLL TO ZOOM</span>
+                <span>MIDDLE MOUSE TO PAN</span>
+            </div>
+        </div>
+
+        <div class="bottom-toolbar">
+            <div class="tool-info">
+                <span class="status-dot"></span>
+                <span id="toolStatus">SELECT TOOL</span>
+            </div>
+
+            <div class="object-actions">
+                <button id="rotateBtn">↻ Rotate</button>
+                <button id="duplicateBtn">▣ Duplicate</button>
+                <button id="deleteBtn">✕ Delete</button>
+            </div>
+
+            <div class="coordinates" id="coordinates">X: -- Y: --</div>
+        </div>
+    </main>
+
+    <aside class="right-panel">
+        <div class="panel-heading">PROJECT DETAILS</div>
+
+        <div class="project-card">
+            <div class="house-preview">⌂</div>
+            <h3 id="detailName">My Dream House</h3>
+            <p>RESIDENTIAL PROJECT</p>
+        </div>
+
+        <div class="section-heading">BUILD STATISTICS</div>
+
+        <div class="stats">
+            <div class="stat">
+                <span>▰</span>
+                <div><strong id="roomCount">0</strong><small>Rooms</small></div>
+            </div>
+            <div class="stat">
+                <span>▤</span>
+                <div><strong id="wallCount">0</strong><small>Walls</small></div>
+            </div>
+            <div class="stat">
+                <span>🪑</span>
+                <div><strong id="itemCount">0</strong><small>Objects</small></div>
+            </div>
+            <div class="stat">
+                <span>⌖</span>
+                <div><strong id="zoomStat">100%</strong><small>Zoom</small></div>
+            </div>
+        </div>
+
+        <div class="panel-divider"></div>
+
+        <div class="section-heading">SELECTED OBJECT</div>
+
+        <div class="selected-card" id="selectedDetails">
+            <span class="empty-icon">⌖</span>
+            <p>No object selected</p>
+            <small>Select an item on your blueprint.</small>
+        </div>
+
+        <div class="panel-divider"></div>
+
+        <div class="section-heading">DESIGN TIPS</div>
+
+        <div class="tip">
+            <span>📐</span>
+            <p>Start by placing rooms, then connect them with walls and doors.</p>
+        </div>
+        <div class="tip">
+            <span>🛋️</span>
+            <p>Arrange furniture inside your rooms to create a realistic layout.</p>
+        </div>
+    </aside>
+
+</div>
+
+<input type="file" id="loadFile" accept=".json" hidden>
+
+<script src="script.js"></script>
+</body>
+</html>
